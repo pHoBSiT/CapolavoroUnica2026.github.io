@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capolavoro — Perché Imparare l'IA / Why Learn AI</title>
+    <meta name="description"
+        content="Perché imparare a usare l'Intelligenza Artificiale è essenziale. / Why learning to use Artificial Intelligence is essential.">
+    <!-- Modern typography (Inter + Anton for punch titles) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:opsz,wdth,wght@12,100,200..800&family=Inter:wght@300;400;500;600;800;900&family=Outfit:wght@100..900&family=Yeseva+One&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ─── Stats Strip ─────────────────────────────────────────────── */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-block {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            background: var(--glass-bg);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .stat-block:hover {
+            background: var(--glass-hover);
+            border-color: var(--border-color);
+        }
+
+        .stat-number {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            background: var(--accent-gradient-blue);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            display: inline-block;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        .stat-source {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        /* ─── Quote Block ─────────────────────────────────────────────── */
+        .pull-quote {
+            border-left: 3px solid var(--accent-blue);
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
+            background: var(--glass-bg);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .pull-quote p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .pull-quote cite {
+            display: block;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* ─── Two-column prose block ──────────────────────────────────── */
+        .prose-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .prose-grid .text-block {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .prose-grid .pull-quote,
+        .prose-grid .highlight-box {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .prose-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-strip {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* ─── Highlighted text box ────────────────────────────────────── */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(41, 151, 255, 0.08), rgba(63, 43, 150, 0.08));
+            border: 1px solid rgba(41, 151, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .highlight-box p {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* ─── Closing statement on page 2 ─────────────────────────────── */
+        .closing-statement-p2 {
+            margin-top: 5rem;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .closing-text-p2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .closing-text-p2 span {
+            background: var(--accent-gradient-blue);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .closing-sub {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Timeline dot animation on page 2 */
+        .timeline-item::before {
+            top: 5.5rem;
+        }
+    </style>
+</head>
+
+<body class="lang-it">
+
+    <!-- Sleek Glassmorphism Navigation -->
+    <nav class="navbar transition-all">
+        <div class="nav-container">
+            <div class="logo page-logo"><a href="MainMasterpiece.html">Capolavoro<span>/</span>EDU</a></div>
+            <ul class="nav-links">
+                <li><a href="MainMasterpiece.html#panoramica">Home</a></li>
+                <li><a href="#metodo"><span class="lang-it">Il Metodo</span><span class="lang-en">The Method</span></a>
+                </li>
+                <li><a href="#dati"><span class="lang-it">I Dati</span><span class="lang-en">The Data</span></a></li>
+                <li><a href="#attivo"><span class="lang-it">L'Azione</span><span class="lang-en">The Action</span></a>
+                </li>
+                <li><a href="#capolavoro"><span class="lang-it">Il Mio Lavoro</span><span class="lang-en">My
+                            Work</span></a></li>
+                <li style="display: flex; align-items: center;">
+                    <button id="lang-toggle" class="lang-btn" aria-label="Toggle Language">EN</button>
+                    <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark/Light Mode">
+                        <svg id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         HERO
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="hero dark-bg" id="panoramica">
+        <!-- Page Switcher -->
+        <div class="page-switcher-wrapper">
+            <div class="page-switcher page-2">
+                <div class="page-switcher-slider"></div>
+                <a href="MainMasterpiece.html"><span class="lang-it">1. Il Sistema</span><span class="lang-en">1. The
+                        System</span></a>
+                <a href="perche-ia.html"><span class="lang-it">2. Il Metodo</span><span class="lang-en">2. The
+                        Method</span></a>
+            </div>
+        </div>
+
+        <canvas id="particle-canvas"></canvas>
+        <div class="hero-content reveal">
+            <h2 class="pre-headline"><span class="lang-it">La Soluzione.</span><span class="lang-en">The
+                    Solution.</span></h2>
+            <h1 class="hero-headline"><span class="lang-it">Costruire</span><span class="lang-en">Building</span> <span
+                    class="accent-serif"><span class="lang-it">Competenza.</span><span
+                        class="lang-en">Competence.</span></span></h1>
+            <h1 class="hero-title-gradient"><span class="lang-it">Imparare Facendo.</span><span class="lang-en">Learning
+                    by Doing.</span></h1>
+            <p class="hero-subheadline"><span class="lang-it">Se il modello industriale ha fallito, qual è
+                    l'alternativa? La risposta è nel Project-Based Learning, nel saper sfruttare l'IA come strumento e
+                    nell'apprendimento attivo. In questa pagina esploriamo le metriche della crisi educativa e il modo
+                    in cui il concetto stesso di "Capolavoro" rappresenta la via d'uscita dal modello
+                    trasmissivo.</span><span class="lang-en">If the industrial model has failed, what is the
+                    alternative? The answer lies in Project-Based Learning, leveraging AI as a tool, and active
+                    learning. On this page we explore the metrics of the educational crisis and how the very concept of
+                    "Capolavoro" (Masterpiece) represents the way out of the transmissive model.</span></p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SEZIONE 1 — Il Metodo
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="section premium-dark" id="metodo">
+        <div class="container reveal">
+            <h2 class="section-title punch-title"><span class="lang-it">Imparare a Imparare.<br><span
+                        class="gradient-text-blue">L'Unica Vera Competenza.</span></span><span class="lang-en">Learning
+                    to Learn.<br><span class="gradient-text-blue">The Only True Skill.</span></span></h2>
+
+            <div class="prose-grid">
+                <div class="text-block">
+                    <h3 class="subsection-punch"><span class="lang-it">Superare la Memoria</span><span
+                            class="lang-en">Beyond Memory</span></h3>
+                    <p class="punch-body"><span class="lang-it">La scuola tradizionale si basa sull'illusione che le
+                            informazioni trasmesse dal docente vengano assimilate passivamente. La scienza ci dice
+                            l'opposto: impariamo solo elaborando, applicando e sbagliando. Il vero obiettivo della
+                            scuola non dovrebbe essere insegnare "cose", ma insegnare <u>come imparare</u>. Quando un
+                            ragazzo sa come scomporre un problema complesso, cercare le informazioni mancanti e
+                            costruire una soluzione, ha acquisito una competenza che non scadrà mai, indipendentemente
+                            dalla tecnologia che utilizzerà.</span><span class="lang-en">Traditional school relies on
+                            the illusion that information transmitted by the teacher is passively assimilated. Science
+                            tells us the opposite: we learn only by processing, applying, and making mistakes. The true
+                            goal of school shouldn't be teaching "things," but teaching <u>how to learn</u>. When a
+                            student knows how to break down a complex problem, find missing information, and build a
+                            solution, they have acquired a skill that will never expire, regardless of the technology
+                            they use.</span></p>
+                    <div class="pull-quote">
+                        <p><span class="lang-it">"L'analfabeta del 21° secolo non sarà chi non sa leggere e scrivere, ma
+                                chi non sa imparare, disimparare e reimparare."</span><span class="lang-en">"The
+                                illiterate of the 21st century will not be those who cannot read and write, but those
+                                who cannot learn, unlearn, and relearn."</span></p>
+                        <cite>— Alvin Toffler</cite>
+                    </div>
+                </div>
+                <div class="text-block">
+                    <h3 class="subsection-punch"><span class="lang-it">L'IA come Acceleratore</span><span
+                            class="lang-en">AI as an Accelerator</span></h3>
+                    <p class="punch-body"><span class="lang-it">In un sistema che promuove l'apprendimento attivo,
+                            l'intelligenza artificiale smette di essere "un modo per barare" e diventa <u>il più potente
+                                tutor mai esistito</u>. L'IA non ti dà semplicemente le risposte: se interrogata
+                            correttamente, le costruisce con te. Può spiegarti un concetto difficile in dieci modi
+                            diversi, simulare uno scenario reale o correggere una riga di codice spiegando il perché.
+                            L'uso critico dell'IA è in sé un allenamento al ragionamento, che richiede la formulazione
+                            precisa del problema (prompting) e la validazione del risultato.</span><span
+                            class="lang-en">In a system that promotes active learning, artificial intelligence stops
+                            being "a way to cheat" and becomes <u>the most powerful tutor ever created</u>. AI doesn't
+                            just give answers: if prompted correctly, it builds them with you. It can explain a
+                            difficult concept in ten different ways, simulate a real scenario, or fix a line of code
+                            while explaining why. The critical use of AI is in itself reasoning training, requiring
+                            precise problem formulation (prompting) and result validation.</span>
+                    </p>
+                    <div class="pull-quote">
+                        <p><span class="lang-it">Saper formulare una richiesta precisa e validare criticamente l'output
+                                dell'IA costringe lo studente a comprendere la materia <u>molto più profondamente</u>
+                                della semplice memorizzazione.</span><span class="lang-en">Knowing how to formulate a
+                                precise request and critically validate AI output forces the student to understand the
+                                subject <u>much more deeply</u> than simple memorization.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SEZIONE 2 — I Numeri dell'Educazione (Stats)
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="section deep-bg" id="dati">
+        <div class="container reveal center-text">
+            <h2 class="section-title"><span class="lang-it">I Sintomi del<br><span
+                        class="gradient-text-blue">Fallimento.</span></span><span class="lang-en">The Symptoms
+                    of<br><span class="gradient-text-blue">Failure.</span></span></h2>
+            <p class="large-body center-block"><span class="lang-it">I numeri dimostrano l'inadeguatezza del modello
+                    attuale. Il divario tra ciò che la scuola insegna e ciò che la società richiede continua a crescere,
+                    generando demotivazione e abbandono.</span><span class="lang-en">The numbers prove the inadequacy of
+                    the current model. The gap between what school teaches and what society demands continues to grow,
+                    generating demotivation and dropout.</span></p>
+
+            <div class="stats-strip reveal">
+                <div class="stat-block">
+                    <div class="stat-number">10.5%</div>
+                    <div class="stat-label"><span class="lang-it">degli studenti italiani abbandona gli studi prima del
+                            diploma</span><span class="lang-en">of Italian students drop out before graduating</span>
+                    </div>
+                    <span class="stat-source">ISTAT, 2023</span>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-number">51%</div>
+                    <div class="stat-label"><span class="lang-it">dei 15enni italiani non comprende appieno ciò che
+                            legge (livello minimo)</span><span class="lang-en">of Italian 15-year-olds do not fully
+                            comprehend what they read</span></div>
+                    <span class="stat-source">Invalsi / PISA, 2023</span>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label"><span class="lang-it">delle informazioni apprese passivamente viene
+                            dimenticato in 24h</span><span class="lang-en">of passively learned information is forgotten
+                            in 24h</span></div>
+                    <span class="stat-source">Ebbinghaus Forgetting Curve</span>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label"><span class="lang-it">dei lavori che esisteranno nel 2030 non sono ancora
+                            stati inventati</span><span class="lang-en">of jobs that will exist in 2030 haven't been
+                            invented yet</span></div>
+                    <span class="stat-source">Dell Technologies / IFTF</span>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-number">16%</div>
+                    <div class="stat-label"><span class="lang-it">dei diplomati italiani si sente preparato per il
+                            lavoro</span><span class="lang-en">of Italian graduates feel prepared for work</span></div>
+                    <span class="stat-source">ISTAT</span>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label"><span class="lang-it">delle aziende fatica a trovare candidati con
+                            competenze trasversali adeguate</span><span class="lang-en">of companies struggle to find
+                            candidates with adequate soft skills</span></div>
+                    <span class="stat-source">Confindustria</span>
+                </div>
+            </div>
+
+            <div class="highlight-box reveal" style="margin-top: 4rem; text-align: left;">
+                <p><span class="lang-it">L'ossessione per i programmi scolastici e i test standardizzati ha generato un
+                        sistema che <u>insegna agli studenti a superare gli esami</u>, ma non a pensare criticamente o a
+                        risolvere problemi reali. Un sistema basato sul voto numerico come fine ultimo spegne la
+                        naturale curiosità e la motivazione intrinseca, trasformando l'apprendimento in una corsa a
+                        ostacoli in cui si dimentica il traguardo appena lo si supera.</span><span class="lang-en">The
+                        obsession with school curricula and standardized testing has generated a system that <u>teaches
+                            students to pass exams</u>, but not to think critically or solve real problems. A system
+                        based on numerical grades as the ultimate goal extinguishes natural curiosity and intrinsic
+                        motivation, turning learning into an obstacle course where you forget the finish line as soon as
+                        you cross it.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SEZIONE 3 — L'Azione (Project Based Learning)
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="section dark-bg" id="attivo">
+        <div class="container reveal center-text">
+            <h2 class="section-title"><span class="lang-it">Passare all'<span
+                        class="gradient-text-red">Azione.</span></span><span class="lang-en">Taking <span
+                        class="gradient-text-red">Action.</span></span></h2>
+            <p class="large-body center-block"><span class="lang-it">Il Project-Based Learning (PBL) rovescia la
+                    dinamica della classe. Lo studente non è più il ricevitore passivo, ma il <u>protagonista</u>. La
+                    conoscenza si acquisisce perché è <u>necessaria</u> a risolvere una sfida, non per prendere un
+                    voto.</span><span class="lang-en">Project-Based Learning (PBL) reverses the classroom dynamic. The
+                    student is no longer a passive receiver, but the <u>protagonist</u>. Knowledge is acquired because
+                    it is <u>necessary</u> to solve a challenge, not to get a grade.</span></p>
+
+            <div class="card-grid reveal">
+                <div class="glass-card" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.02" data-tilt-max="3">
+                    <div class="icon-placeholder">🛠️</div>
+                    <h4><span class="lang-it">Costruire per Capire</span><span class="lang-en">Build to
+                            Understand</span></h4>
+                    <p><span class="lang-it">Nel costruttivismo, la conoscenza è costruita attivamente da chi apprende.
+                            Non si impara l'informatica leggendo un libro sull'informatica, si impara l'informatica
+                            <u>programmando un'applicazione</u>. Quando incontri un errore, la teoria diventa uno
+                            strumento vitale per andare avanti, e si fissa nella memoria in modo indelebile.</span><span
+                            class="lang-en">In constructivism, knowledge is actively built by the learner. You don't
+                            learn computer science by reading a book about it; you learn it by <u>programming an
+                                application</u>. When you encounter an error, theory becomes a vital tool to move
+                            forward, and it anchors in your memory indelibly.</span></p>
+                </div>
+                <div class="glass-card" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.02" data-tilt-max="3">
+                    <div class="icon-placeholder">🧠</div>
+                    <h4><span class="lang-it">Sbagliare è Apprendere</span><span class="lang-en">Failing is
+                            Learning</span>
+                    </h4>
+                    <p><span class="lang-it">Il modello scolastico punisce severamente l'errore con l'insufficienza. Ma
+                            nel mondo reale, l'errore è <u>il meccanismo biologico primario</u> per acquisire nuove
+                            competenze. L'apprendimento per progetti riabilita l'errore come step inevitabile del
+                            processo iterativo. Si prova, si sbaglia, si corregge, si impara.</span><span
+                            class="lang-en">The school model severely punishes mistakes with failing grades. But in the
+                            real world, making mistakes is <u>the primary biological mechanism</u> for acquiring new
+                            skills. Project-based learning rehabilitates failure as an inevitable step in the iterative
+                            process. You try, you fail, you fix, you learn.</span></p>
+                </div>
+                <div class="glass-card" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.02" data-tilt-max="3">
+                    <div class="icon-placeholder">🎯</div>
+                    <h4><span class="lang-it">Motivazione Intrinseca</span><span class="lang-en">Intrinsic
+                            Motivation</span>
+                    </h4>
+                    <p><span class="lang-it">Lavorare a un progetto reale, che ha un impatto o che riflette i propri
+                            interessi, accende la <u>motivazione intrinseca</u>. Lo studente fa ricerca e studia non
+                            perché obbligato, ma perché <u>vuole completare la sua opera</u>. Questa è la differenza
+                            abissale tra fare i "compiti per casa" e sviluppare un proprio portfolio.</span><span
+                            class="lang-en">Working on a real project, one with impact or reflecting personal interests,
+                            ignites <u>intrinsic motivation</u>. The student researches and studies not because they are
+                            forced to, but because they <u>want to complete their work</u>. This is the massive
+                            difference between doing "homework" and developing your own portfolio.</span></p>
+                </div>
+            </div>
+
+            <div class="pull-quote reveal" style="text-align: left; margin-top: 4rem;">
+                <p><span class="lang-it">"Dimmi e io dimentico, mostrami e io ricordo, coinvolgimi e io
+                        imparo."</span><span class="lang-en">"Tell me and I forget, teach me and I may remember, involve
+                        me and I learn."</span></p>
+                <cite><span class="lang-it">— Benjamin Franklin</span><span class="lang-en">— Benjamin
+                        Franklin</span></cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SEZIONE 4 — Il Mio Capolavoro
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="section offset-section premium-dark" id="capolavoro">
+        <div class="container reveal">
+            <h2 class="section-title center-text"><span class="lang-it">Il significato del <span
+                        class="gradient-text-blue">"Capolavoro"</span></span><span class="lang-en">The meaning of the
+                    <span class="gradient-text-blue">"Masterpiece"</span></span></h2>
+            <p class="large-body center-block center-text"><span class="lang-it">Il Ministero dell'Istruzione ha
+                    introdotto di recente il concetto di <u>"Capolavoro"</u>. L'idea di fondo è corretta: dare agli
+                    studenti l'opportunità di dimostrare le proprie competenze attraverso la realizzazione di un
+                    prodotto reale, superando la logica del test. Questo sito è il mio.</span><span class="lang-en">The
+                    Ministry of Education recently introduced the concept of the <u>"Capolavoro" (Masterpiece)</u>. The
+                    underlying idea is correct: giving students the opportunity to demonstrate their skills by creating
+                    a real product, moving beyond test logic. This website is mine.</span></p>
+
+            <div class="deep-grid reveal" style="margin-top: 4rem;">
+                <div class="deep-card">
+                    <div class="deep-card-number">💻</div>
+                    <h3 class="subsection-title"><span class="lang-it">Perché un sito web?</span><span
+                            class="lang-en">Why a website?</span></h3>
+                    <p><span class="lang-it">Ho scelto di non scrivere la classica tesina su carta perché volevo
+                            realizzare qualcosa di <u>interattivo, pubblico e tangibile</u>. Sviluppare questo portale
+                            mi ha costretto a imparare l'HTML, il CSS, il design dell'esperienza utente (UX/UI),
+                            l'architettura delle informazioni e, non ultimo, come utilizzare l'Intelligenza Artificiale
+                            come <u>strumento di sviluppo</u> (co-pilota). Nessuna interrogazione orale mi avrebbe
+                            lasciato competenze così pratiche e spendibili nel mondo reale.</span><span
+                            class="lang-en">I chose not to write the classic paper essay because I wanted to create
+                            something <u>interactive, public, and tangible</u>. Developing this portal forced me to
+                            learn HTML, CSS, user experience (UX/UI) design, information architecture, and last but not
+                            least, how to use Artificial Intelligence as a <u>development tool</u> (co-pilot). No oral
+                            exam would have left me with such practical and real-world skills.</span></p>
+                </div>
+                <div class="deep-card">
+                    <div class="deep-card-number">👁️</div>
+                    <h3 class="subsection-title"><span class="lang-it">L'IA e la Regia Umana</span><span
+                            class="lang-en">AI and Human Direction</span></h3>
+                    <p><span class="lang-it">Ho usato l'IA per scrivere il codice di base, per correggere errori e per
+                            affinare le traduzioni in inglese. <u>Ma l'IA non ha deciso cosa dire</u>. Non ha scelto
+                            l'architettura logica, non ha provato la frustrazione quando un'animazione non funzionava,
+                            né l'urgenza di comunicare questo messaggio sul sistema scolastico. Considerati il regista:
+                            l'IA è una troupe straordinaria. Ma <u>la visione è tua</u>. Senza la tua intenzione
+                            iniziale, la macchina produce solo rumore.</span><span class="lang-en">I used AI to write
+                            base code, fix bugs, and refine the English translations. <u>But the AI didn't decide what
+                                to say</u>. It didn't choose the logical architecture, it didn't feel the frustration
+                            when an animation didn't work, nor the urgency to communicate this message about the school
+                            system. Consider yourself the director: AI is an amazing crew. But <u>the vision is
+                                yours</u>. Without your initial intention, the machine only produces noise.</span></p>
+                </div>
+                <div class="deep-card">
+                    <div class="deep-card-number">🚀</div>
+                    <h3 class="subsection-title"><span class="lang-it">La Prova Finale</span><span class="lang-en">The
+                            Final Proof</span></h3>
+                    <p><span class="lang-it">Il vero valore del "Capolavoro" non è il prodotto finale in sé, ma il
+                            <u>processo cognitivo ed emotivo</u> necessario per crearlo. È la dimostrazione che quando
+                            ci viene data fiducia, responsabilità e la libertà di applicare attivamente le nostre
+                            capacità, siamo in grado di produrre lavori di alto livello. Il Capolavoro dimostra che il
+                            futuro della scuola <u>esiste già</u>. Si tratta solo di avere il coraggio di renderlo la
+                            normalità.</span><span class="lang-en">The true value of the "Masterpiece" is not the final
+                            product itself, but the <u>cognitive and emotional process</u> required to create it. It is
+                            proof that when given trust, responsibility, and the freedom to actively apply our skills,
+                            we are capable of producing high-level work. The Masterpiece proves that the future of
+                            school <u>already exists</u>. It's just a matter of having the courage to make it the
+                            norm.</span></p>
+                </div>
+            </div>
+
+            <div class="closing-statement-p2 reveal">
+                <p class="closing-text-p2"><span class="lang-it">Questo non è solo un progetto scolastico.<br><span>È la
+                            dimostrazione di un metodo.</span></span><span class="lang-en">This is not just a school
+                        project.<br><span>It is the demonstration of a method.</span></span></p>
+                <p class="closing-sub"><span class="lang-it">Il sistema formativo cambierà solo quando l'apprendimento
+                        cesserà di essere un obbligo da subire, per tornare a essere uno strumento di scoperta. L'IA, i
+                        progetti, i capolavori: sono tutti mezzi per riconquistare la curiosità che la fabbrica
+                        scolastica ci ha tolto.</span><span class="lang-en">The educational system will only change when
+                        learning ceases to be an obligation to endure, and returns to being a tool of discovery. AI,
+                        projects, masterpieces: they are all means to reclaim the curiosity that the school factory has
+                        taken from us.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container flex-footer">
+            <p><span class="lang-it">Progetto Capolavoro</span><span class="lang-en">Capstone Project</span></p>
+            <p style="font-style: italic;">Giacomo Ianniello - 3^Cin - 2025/26</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="particles.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
